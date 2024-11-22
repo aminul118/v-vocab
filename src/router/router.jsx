@@ -5,6 +5,10 @@ import HomeLayout from "../layouts/HomeLayout";
 import Login from "../pages.jsx/Login";
 import Register from "../pages.jsx/Register";
 import ContactUs from "../pages.jsx/ContactUs";
+import Vocabularies from "../pages.jsx/Vocabularies";
+import UserProfile from "../pages.jsx/UserProfile";
+import PrivateRoute from "./PrivateRoute";
+import VocabularyDetails from "../pages.jsx/VocabularyDetails";
 
 const router = createBrowserRouter([
   {
@@ -15,6 +19,28 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <HomeLayout />,
+      },
+      {
+        path: "/vocabulary",
+        element: <Vocabularies />,
+        loader: () => fetch("/vocabularies.json"),
+      },
+      {
+        path: "/vocab-details/:vocabId",
+        element: (
+          <PrivateRoute>
+            <VocabularyDetails />,
+          </PrivateRoute>
+        ),
+        loader: () => fetch(`/vocabularies.json`),
+      },
+      {
+        path: "/user-profile",
+        element: (
+          <PrivateRoute>
+            <UserProfile />,
+          </PrivateRoute>
+        ),
       },
       {
         path: "/login",
