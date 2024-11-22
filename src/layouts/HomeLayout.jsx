@@ -1,5 +1,11 @@
+import BannerSlider from "../components/BannerSlider";
+
 const HomeLayout = () => {
-  return <div>Home</div>;
+  return (
+    <div>
+      <BannerSlider />
+    </div>
+  );
 };
 
 export default HomeLayout;

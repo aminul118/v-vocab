@@ -1,58 +1,100 @@
-import { useState } from "react";
-import { FaBars } from "react-icons/fa";
+import { useContext, useState } from "react";
+import { FaBars, FaUser } from "react-icons/fa";
 import { FaXmark } from "react-icons/fa6";
 import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../providers/AuthProvider";
 
 const Header = () => {
+  const { user, signOutUser } = useContext(AuthContext);
   const [menu, setMenu] = useState(false);
+
   const handleMenuToggle = () => {
     setMenu(!menu);
   };
-  console.log(menu);
+
   const navLinks = (
     <>
       <li>
-        <NavLink to={"/"}>Home</NavLink>
+        <NavLink to="/" className="hover:text-orange-500 transition-colors">
+          Home
+        </NavLink>
       </li>
       <li>
-        <NavLink to={"/about"}>About</NavLink>
+        <NavLink
+          to="/about"
+          className="hover:text-orange-500 transition-colors"
+        >
+          About
+        </NavLink>
       </li>
       <li>
-        <NavLink to={"/Services"}>Services</NavLink>
+        <NavLink
+          to="/services"
+          className="hover:text-orange-500 transition-colors"
+        >
+          Services
+        </NavLink>
       </li>
     </>
   );
+
   return (
     <header className="relative">
-      <div className="bg-gray-100 text-lg">
-        <nav className="flex items-center justify-between relative py-2 lg:py-3 w-11/12 mx-auto">
+      <div className="bg-gray-100 text-lg shadow-md">
+        <nav className="flex items-center justify-between py-2 lg:py-3 w-11/12 mx-auto">
+          {/* Mobile Menu Toggle Button */}
           <button
             className={`${
-              menu ? "bg-red-800" : "bg-slate-950"
-            } text-xl  p-2 rounded-full md:hidden`}
+              menu ? "bg-red-800" : "text-black"
+            } text-xl text-white p-2 rounded-full md:hidden`}
             onClick={handleMenuToggle}
+            aria-label="Toggle menu"
           >
             {!menu ? <FaBars /> : <FaXmark />}
           </button>
 
+          {/* Logo */}
           <Link
-            to={"/"}
-            className="text-2xl font-bold text-orange-500 flex items-center gap-2"
+            to="/"
+            className="text-xl md:text-2xl font-bold text-orange-500 flex items-center gap-2"
           >
-            {" "}
-            <img className="w-8" src="/public/vintage-vocab.png" alt="" />
+            <img className="w-6 md:w-8" src="/vintage-vocab.png" alt="V-Vocab Logo" />
             V-Vocab
           </Link>
+
           {/* Large Device Menu */}
-          <ul className="hidden md:flex gap-5 ">{navLinks}</ul>
-          <button className="btn btn-warning">button</button>
+          <ul className="hidden md:flex gap-5">{navLinks}</ul>
+
+          {/* Login/Logout Section */}
+          <div>
+            {user ? (
+              <div className="flex items-center gap-3">
+                <img
+                  className="w-12 h-12 object-cover rounded-full"
+                  src={user.photoURL}
+                  alt="User Profile"
+                />
+                <button onClick={signOutUser} className="btn btn-warning">
+                  Log out
+                </button>
+              </div>
+            ) : (
+              <div className="flex items-center gap-3">
+                <FaUser className="text-2xl" />
+                <Link to="/login" className="btn btn-warning">
+                  Login
+                </Link>
+              </div>
+            )}
+          </div>
         </nav>
       </div>
+
       {/* Small Device Menu */}
       <ul
         className={`${
-          !menu ? "hidden" : "block"
-        } w-54 bg-gray-100 rounded-xl w-32 p-6 space-y-1 absolute left-5`}
+          menu ? "block" : "hidden"
+        } bg-gray-100 rounded-lg shadow-md p-6 space-y-3 absolute top-16 left-5 w-48 z-50 transition-transform`}
       >
         {navLinks}
       </ul>
