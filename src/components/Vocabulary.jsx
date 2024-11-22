@@ -6,7 +6,10 @@ const Vocabulary = ({ vocabulary }) => {
     vocabulary;
 
   return (
-    <div className="card bg-white shadow-md p-4 mb-4 rounded-lg space-y-3">
+    <div
+      className="card bg-white shadow-md p-4 mb-4 rounded-lg space-y-3"
+      data-aos="fade-up"
+    >
       <h3 className="text-xl font-bold text-primary">{word}</h3>
       <p className="italic text-gray-600">{pronunciation}</p>
       <p className="text-sm text-gray-800">
