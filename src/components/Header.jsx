@@ -35,6 +35,14 @@ const Header = () => {
           Services
         </NavLink>
       </li>
+      <li>
+        <NavLink
+          to="/contact-us"
+          className="hover:text-orange-500 transition-colors"
+        >
+          Contact us
+        </NavLink>
+      </li>
     </>
   );
 
@@ -63,7 +71,7 @@ const Header = () => {
           </Link>
 
           {/* Large Device Menu */}
-          <ul className="hidden md:flex gap-5">{navLinks}</ul>
+          <ul className="hidden md:flex gap-8">{navLinks}</ul>
 
           {/* Login/Logout Section */}
           <div>

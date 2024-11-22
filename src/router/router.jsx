@@ -4,6 +4,7 @@ import ErrorPage from "../pages.jsx/ErrorPaage";
 import HomeLayout from "../layouts/HomeLayout";
 import Login from "../pages.jsx/Login";
 import Register from "../pages.jsx/Register";
+import ContactUs from "../pages.jsx/ContactUs";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register />,
+      },
+      {
+        path: "/contact-us",
+        element: <ContactUs />,
       },
     ],
   },

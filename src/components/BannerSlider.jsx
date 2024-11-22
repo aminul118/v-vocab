@@ -43,7 +43,7 @@ const BannerSlider = () => {
           <img
             src={slide.image}
             alt={`Slide ${index + 1}`}
-            className="w-full h-[500px] lg:h-[calc(100vh-296px)] object-cover "
+            className="w-full h-[500px] lg:h-[calc(100vh-64px)] object-cover "
           />
           {/* Text Overlay */}
           <div className="absolute inset-0 flex items-center justify-center">
